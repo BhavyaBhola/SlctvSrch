@@ -6,7 +6,7 @@ def update_tracks(all_tracks , offline_all_tracks , unmatched_tracks , kf):
         if obj.status == "new" and obj.counter>3:
             del all_tracks[n]
         
-        if obj.status == "matched" and obj.counter>20:
+        if obj.status == "matched" and obj.counter>10:
             offline_all_tracks.append(all_tracks[n])
             del all_tracks[n]
 

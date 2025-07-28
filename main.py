@@ -9,6 +9,7 @@ import initTrack
 import matching
 import tracker
 from features.sift import Sift
+from features.embd import embdModel
 from kalmanFilter import KalmanFilter
 
 
@@ -23,12 +24,14 @@ def run(video_source, model, detection_conf, sift_good_dist, min_sift_score, acc
 
     kf = KalmanFilter()
     sift = Sift(sift_good_dist)
+    emb_model = embdModel()
 
     offline_all_tracks = []
     all_tracks = []
     uniq_id = 1
     frame_no = 0
     color_map = {}
+    trails_map = {}
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -38,28 +41,28 @@ def run(video_source, model, detection_conf, sift_good_dist, min_sift_score, acc
 
         results = model(frame, verbose=False, conf=detection_conf, classes=[2])
 
-        print(f"{frame_no}--{len(results[0])}")
-
         mesur_list = initTrack.collect_measurments(results)
-        des_list = sift.collect_descriptors(mesur_list, frame)
+        #des_list = sift.collect_descriptors(mesur_list, frame)
+        emb_list = emb_model.collectEmbedding(mesur_list,frame)
 
-        C = B = C2 = B2 = None
+        C = B = C2 = B2 = C3 = B3 = None
         if all_tracks:
             C, B = matching.maha_dist_matrix(mesur_list, all_tracks, kf)
-            C2, B2 = matching.sift_dist_matrix(des_list, all_tracks, sift, min_sift_score, accumulate_sift)
-
+            #C2, B2 = matching.sift_dist_matrix(des_list, all_tracks, sift, min_sift_score, accumulate_sift)
+            C3 , B3 = matching.embMatching(emb_list=emb_list , all_tracks=all_tracks)
+            #C4 , B4 = matching.centroid_distance(all_tracks=all_tracks , mesur_list=mesur_list)
 
         unmatches = mesur_list.copy()
         
         if all_tracks:
-            all_tracks, unmatches, des_list = matching.matching_assignment(C, B, C2, B2, all_tracks, unmatches, des_list, frame_no, kf)
+            all_tracks, unmatches , emb_list = matching.matching_assignment(B, C, B3, C3, all_tracks, unmatches, frame_no, kf,emb_list=emb_list)
 
-        unmatches_track, uniq_id = initTrack.new_track(unmatches, des_list, uniq_id, frame_no, kf)
+        unmatches_track, uniq_id = initTrack.new_track(unmatches, uniq_id, frame_no, kf,emb_list=emb_list)
         all_tracks, offline_all_tracks = tracker.update_tracks(all_tracks, offline_all_tracks, unmatches_track, kf)
 
         if visualize:
-            frame, color_map = result.draw_current_tracks(frame, all_tracks, color_map)
-            cv2.imshow("Real-time Vehicle Tracking", frame)
+            frame, color_map ,trails_map= result.draw_current_tracks(frame, all_tracks, color_map,trails_map=trails_map)
+            cv2.imshow("Tracking Window", frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -85,10 +88,6 @@ if __name__ == "__main__":
         min_sift_score=20,
         accumulate_sift=3,
         visualize=True)
-    
-
-### Below code for processing images from a folder
-
 
 # def run(data_path, model, detection_conf, sift_good_dist, min_sift_score, accumulate_sift, visualize):
 

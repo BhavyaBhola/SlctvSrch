@@ -17,15 +17,13 @@ def collect_measurments(results):
 
     return mesur_list
 
-def new_track(unmatches , des_list, unique_id , frame_no ,kf):
+def new_track(unmatches, unique_id , frame_no ,kf,emb_list):
     unmatches_track = []
     for j,measur in enumerate(unmatches):
         mean, covariance = kf.initialize(measur)
         
-        des1 = des_list[j]
-        if des_list[j] is None or des_list[j].shape[0]<11:
-            des1 = None
-        unmatches_track.append(Track(unique_id,'new',[measur], [mean] ,[frame_no], covariance, [des1]))
+        emb = emb_list[j]
+        unmatches_track.append(Track(unique_id,'new',[measur], [mean] ,[frame_no], covariance, embedding=emb))
         unique_id+=1
 
     
