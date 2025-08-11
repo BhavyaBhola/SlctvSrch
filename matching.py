@@ -49,7 +49,7 @@ def maha_dist_matrix(mesur_list, all_tracks, kf):
     for i in range(len(mesur_list)):
         for j in range(len(all_tracks)):
             C[i][j] = kf.mahalanobis_dist(all_tracks[j].mean[-1], all_tracks[j].covariance, mesur_list[i])
-            if C[i][j] <= 9: #tuned this parameter
+            if C[i][j] <= 9:
                 B[i][j] = 1
             else:
                 B[i][j] = 0
@@ -77,7 +77,7 @@ def embMatching(emb_list, all_tracks,similarity=0.993):
     return C,B
 
 
-def matching_assignment(B , C, B2 , C2 , all_tracks , unmatches, frame_no, kf, emb_list):
+def matching_assignment(B , C, B2 , C2 , all_tracks , unmatches, frame_no, kf, current_frame_masks ,emb_list):
     l1 = 0.5
     l2 = 0.5
     
@@ -89,7 +89,7 @@ def matching_assignment(B , C, B2 , C2 , all_tracks , unmatches, frame_no, kf, e
 
     for k in range(len(row_idx)):
         if B[row_idx[k]][col_idx[k]]>0 and B2[row_idx[k]][col_idx[k]]>0:
-            print("matched")
+            # print("matched")
             obj = all_tracks[col_idx[k]]
             obj.measurement.append(unmatches[row_idx[k]])  
             # obj.descriptor.append(des_list[row_idx[k]])  
@@ -97,6 +97,8 @@ def matching_assignment(B , C, B2 , C2 , all_tracks , unmatches, frame_no, kf, e
             obj.embedding = emb_list[row_idx[k]]
             obj.status = 'matched'
             obj.reset()
+            mask_to_add = current_frame_masks[row_idx[k]]
+            obj.addMask(frame_no,mask_to_add)
 
             new_m, new_c = kf.update(obj.mean[-1], obj.covariance, obj.measurement[-1])
             obj.mean[-1] = new_m
@@ -105,7 +107,11 @@ def matching_assignment(B , C, B2 , C2 , all_tracks , unmatches, frame_no, kf, e
             del_idx.append(row_idx[k])
 
     unmatches = [ele for idx, ele in enumerate(unmatches) if idx not in del_idx]
-    #des_list = [ele for idx, ele in enumerate(des_list) if idx not in del_idx]
     emb_list = [ele for idx , ele in enumerate(emb_list) if idx not in del_idx]
+    remaining_masks = [ele for idx, ele in enumerate(current_frame_masks) if idx not in del_idx]
 
-    return all_tracks, unmatches , emb_list
+    return all_tracks, unmatches ,emb_list , remaining_masks 
+
+
+
+

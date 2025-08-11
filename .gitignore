@@ -1,3 +1,4 @@
+*.npy
 frames/
-results/
+output_frames/
 __pycache__/

@@ -82,12 +82,12 @@ def draw_current_tracks(frame, all_tracks, color_map,trails_map,max_length=10):
         if track_id not in trails_map:
             trails_map[track_id] = []
         trails_map[track_id].append((measure[0] , measure[1]))
-        if len(trails_map[track_id])>max_length:
-            trails_map[track_id].pop(0)
 
-        for i in range(1, len(trails_map[track_id])):
-            pt1 = tuple(map(int, trails_map[track_id][i - 1]))
-            pt2 = tuple(map(int, trails_map[track_id][i]))
+        n = len(trails_map[track_id])
+
+        for i in range(1, min(n , max_length)):
+            pt1 = tuple(map(int, trails_map[track_id][-max_length:][i-1]))
+            pt2 = tuple(map(int, trails_map[track_id][-max_length:][i]))
             cv2.line(frame, pt1, pt2, color, 2)
         
     return frame, color_map ,trails_map

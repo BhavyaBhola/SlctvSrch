@@ -4,6 +4,8 @@ from torchvision.models import resnet34 , ResNet34_Weights
 from torch import nn
 from torchvision import transforms
 import cv2
+import warnings
+warnings.filterwarnings("ignore")
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -38,13 +40,14 @@ class embdModel():
         for i in mesur_list:
             h = i[3]
             w = i[2]*h
-            x1 = int(i[0]-w/2)
-            y1 = int(i[1]-h/2)
-            x2 = int(i[0] + w/2)
-            y2 = int(i[1] + h/2)
+            x1 = abs(int(i[0]-w/2))
+            y1 = abs(int(i[1]-h/2))
+            x2 = abs(int(i[0] + w/2))
+            y2 = abs(int(i[1] + h/2))
 
 
             template = frame[y1:y2, x1:x2,:]
+            #print(template.shape)
             template = cv2.GaussianBlur(template, (3, 3), 0)
             emb = self.getEmbedding(template)
             emb_list.append(emb)

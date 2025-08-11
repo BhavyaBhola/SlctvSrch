@@ -9,7 +9,7 @@ def collect_measurments(results):
         bbx = obj.xywh[0]
         x_cen = float(bbx[0])
         y_cen = float(bbx[1])
-        ar = float(bbx[3] / bbx[2])
+        ar = float(bbx[3] / bbx[2]) if bbx[2] != 0 else 0
         h = float(bbx[3])
 
         msmt = np.array([x_cen , y_cen , ar , h])
@@ -17,13 +17,27 @@ def collect_measurments(results):
 
     return mesur_list
 
-def new_track(unmatches, unique_id , frame_no ,kf,emb_list):
+def new_track(unmatches, unique_id , frame_no ,kf,current_frame_masks,emb_list):
     unmatches_track = []
     for j,measur in enumerate(unmatches):
         mean, covariance = kf.initialize(measur)
         
         emb = emb_list[j]
-        unmatches_track.append(Track(unique_id,'new',[measur], [mean] ,[frame_no], covariance, embedding=emb))
+        mask = current_frame_masks[j]
+
+        new_obj_track = Track(
+            id=unique_id,
+            status="new",
+            measurment=[measur],
+            mean=[mean],
+            frame=[frame_no],
+            covariance=covariance,
+            embedding=emb
+        )
+
+        new_obj_track.addMask(frame_no,mask)
+        unmatches_track.append(new_obj_track)
+
         unique_id+=1
 
     

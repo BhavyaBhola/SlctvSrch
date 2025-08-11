@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
+from .embd import embdModel
 
+test = embdModel()
 
 class Sift:
     def __init__(self , threshold):
@@ -9,7 +11,7 @@ class Sift:
     def collect_descriptors(self,mesur_list,img):
         des_list = []
         sift = cv2.SIFT_create()
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
         for i in mesur_list:
             h = i[3]
@@ -18,9 +20,8 @@ class Sift:
             y1 = int(i[1]-h/2)
             x2 = int(i[0] + w/2)
             y2 = int(i[1] + h/2)
-            template = img[y1:y2, x1:x2]
-
-            template = cv2.GaussianBlur(template, (3, 3), 0)
+            template = img[y1:y2, x1:x2,:]
+            template = cv2.GaussianBlur(template, (5, 5), 0)
             _, des = sift.detectAndCompute(template,None)
             des_list.append(des)
 
