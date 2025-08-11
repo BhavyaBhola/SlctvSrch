@@ -42,11 +42,11 @@ python extTrack.py --track_id 3
 
 ### 📸 Sample Tracking video
 
-![Sample Tracking Output](https://github.com/BhavyaBhola/SlctvSrch/blob/main/output_video.mp4)
+<video src="https://github.com/BhavyaBhola/SlctvSrch/blob/main/output_video.mp4"></video>
 
 ### 📸 Sample Track extraction video
 
-![Sample Tracking Output](https://github.com/BhavyaBhola/SlctvSrch/blob/main/extTrack.mp4)
+<video src="https://github.com/BhavyaBhola/SlctvSrch/blob/main/extTrack.mp4c"></video>
 
 
 ---
