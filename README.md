@@ -46,9 +46,7 @@ python extTrack.py --track_id 3
 
 ### 📸 Sample Track extraction video
 
-[![Watch the video](https://github.com/BhavyaBhola/SlctvSrch/blob/main/background.jpg)](https://github.com/user-attachments/assets/efa68d82-69a7-44ea-b5b3-5e1532e85a93)
-
-
+[![Watch the video](https://github.com/BhavyaBhola/SlctvSrch/blob/main/background.jpg)](https://github.com/user-attachments/assets/af9fc541-60af-4880-9306-39f57ffed556)
 
 ---
 
