@@ -13,7 +13,7 @@ A tool for surveillance, tracking, and object extraction from videos—ideal for
 ---
 
 ## Usage
-
+### !!! Make sure there is no change in the background of video or video should be made using a still camera
 ### 1. Start Tracking & Extract Background  
 ```bash
 python startTracking.py --video_path <video_path>
