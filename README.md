@@ -38,19 +38,26 @@ python extTrack.py --track_id 3
 
 ### 🎥 Sample Input Video
 
-[▶ Watch Sample Video](sample_video.mp4)
+[▶ Watch Sample Video](https://github.com/user-attachments/assets/311b6adf-0941-4e05-8ba2-61cdc985024b)
 
 ### 📸 Sample Tracking video
 
 [![Watch the video](https://github.com/BhavyaBhola/SlctvSrch/blob/main/background.jpg)](https://github.com/user-attachments/assets/49ce013b-471c-41c7-919a-1753b53755e5)
 
-### 📸 Sample Track extraction video
+### 📸 Sample Track extraction frames
 
-[![Watch the video](https://github.com/BhavyaBhola/SlctvSrch/blob/main/background.jpg)](https://github.com/user-attachments/assets/04de67f4-d790-4e0e-a5fe-f1340f2fb070)
+The output here is shown for track id (7) from the above tracking video.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/e0ffcf51-7758-4873-894c-81fb32c990b7" width="30%" />
+  <img src="https://github.com/user-attachments/assets/f919668d-28c0-49c3-a493-6f2936e85434" width="30%" />
+  <img src="https://github.com/user-attachments/assets/e52b11fb-56ef-4f9a-b32d-196e348ceeab" width="30%" />
+</div>
+
+
+
 
 ---
-
-
 
 ## Contributing
 
