@@ -43,7 +43,7 @@ To get started, you'll need **Python 3.x** and the required libraries. The tool 
 
 ## Usage
 
-⚠️ **Important:** This tool is designed for videos captured with a **stationary camera**. Any significant camera movement will affect the accuracy of background extraction and object tracking.
+⚠️ **Important:** This tool is designed for videos captured with a **stationary camera** and currenly only work for **CARS**. Any significant camera movement will affect the accuracy of background extraction and object tracking.
 
 ### Step 1: Start Tracking and Extract Background
 
