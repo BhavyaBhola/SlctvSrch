@@ -86,18 +86,23 @@ python extTrack.py --track_id 3
 
 ### 🎥 Input and Tracking Video
 
-  - **Sample Input Video:** [▶ Watch Sample Video](https://github.com/user-attachments/assets/311b6adf-0941-4e05-8ba2-61cdc985024b)
-  - **Tracking Video Output:** The output video will have bounding boxes and IDs assigned to each moving object.
-  - [![Watch the video](https://github.com/BhavyaBhola/SlctvSrch/blob/main/background.jpg)](https://github.com/user-attachments/assets/49ce013b-471c-41c7-919a-1753b53755e5)
+<video src="https://github.com/user-attachments/assets/311b6adf-0941-4e05-8ba2-61cdc985024b" controls="controls" muted="muted" width="100%">
+</video>
 
-### 📸 Track Extraction Frames
+**Tracking Video Output:** The output video will have bounding boxes and IDs assigned to each moving object. 
+<video src="https://github.com/user-attachments/assets/49ce013b-471c-41c7-919a-1753b53755e5" controls="controls" muted="muted" width="100%">
+</video>
 
-After running `extTrack.py`, a folder will be created with individual frames of the selected object. For instance, extracting **Track ID 7** would produce a series of images like these:
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/e0ffcf51-7758-4873-894c-81fb32c990b7" width="80%" />
-  <img src="https://github.com/user-attachments/assets/f919668d-28c0-49c3-a493-6f2936e85434" width="80%" />
-  <img src="https://github.com/user-attachments/assets/e52b11fb-56ef-4f9a-b32d-196e348ceeab" width="80%" />
-</div>
+
+### 📸 Track Extraction Video
+
+After running `extTrack.py`, a video output will be created with selected object. For instance, extracting **Track ID 7** would produce output like these (below showing few frames from the output video):
+
+<div align="center"\>
+  <img src="https://github.com/user-attachments/assets/e0ffcf51-7758-4873-894c-81fb32c990b7" width="80%" /\>
+  <img src="https://github.com/user-attachments/assets/f919668d-28c0-49c3-a493-6f2936e85434" width="80%" /\>
+  <img src="https://github.com/user-attachments/assets/e52b11fb-56ef-4f9a-b32d-196e348ceeab" width="80%" /\>
+</div\>
 
 -----
 
