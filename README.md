@@ -49,9 +49,9 @@ python extTrack.py --track_id 3
 The output here is shown for track id (7) from the above tracking video.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/e0ffcf51-7758-4873-894c-81fb32c990b7" width="30%" />
-  <img src="https://github.com/user-attachments/assets/f919668d-28c0-49c3-a493-6f2936e85434" width="30%" />
-  <img src="https://github.com/user-attachments/assets/e52b11fb-56ef-4f9a-b32d-196e348ceeab" width="30%" />
+  <img src="https://github.com/user-attachments/assets/e0ffcf51-7758-4873-894c-81fb32c990b7" width="80%" />
+  <img src="https://github.com/user-attachments/assets/f919668d-28c0-49c3-a493-6f2936e85434" width="80%" />
+  <img src="https://github.com/user-attachments/assets/e52b11fb-56ef-4f9a-b32d-196e348ceeab" width="80%" />
 </div>
 
 
