@@ -96,7 +96,7 @@ python extTrack.py --track_id 3
 
 ### 📸 Track Extraction Video
 
-After running `extTrack.py`, a video output will be created with selected object. For instance, extracting **Track ID 7** would produce output like these (below showing few frames from the output video):
+After running `extTrack.py`, a video output will be created with selected object. For instance, extracting **Track ID 5** would produce output like these (below showing few frames from the output video):
 
 <div align="center"\>
   <img src="https://github.com/user-attachments/assets/e0ffcf51-7758-4873-894c-81fb32c990b7" width="80%" /\>
