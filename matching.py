@@ -62,7 +62,7 @@ def embMatching(emb_list, all_tracks,similarity=0.993):
     
     for i in range(len(emb_list)):
         for j in range(len(all_tracks)):
-            if all_tracks[j].embedding[0] == None:
+            if len(all_tracks[j].embedding[0]) == 0:
                 continue
             prod = np.dot(emb_list[i][0] , all_tracks[j].embedding[0])
             magA = np.linalg.norm(emb_list[i][0])

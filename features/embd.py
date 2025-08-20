@@ -32,7 +32,7 @@ class embdModel():
 
         emb = emb.view(emb.shape[0] , -1)
 
-        return emb
+        return emb.cpu().numpy()
 
     def collectEmbedding(self,mesur_list,frame):
         emb_list = []

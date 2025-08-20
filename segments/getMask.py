@@ -1,12 +1,15 @@
 import numpy as np
 from ultralytics.models.sam import SAM
 from ultralytics import FastSAM
+import torch
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class genMask():
 
     def __init__(self, model_path="models/FastSAM-s.pt"):
         print("Init Sam")
-        self.segModel = FastSAM(model_path)
+        self.segModel = FastSAM(model_path).to(DEVICE)
         print("SAM initialized")
 
     def generateMask(self, image , box):

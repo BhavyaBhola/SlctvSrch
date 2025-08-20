@@ -4,6 +4,7 @@ import cv2
 from ultralytics import YOLO
 import os
 import argparse
+import torch
 
 from tqdm import tqdm
 
@@ -19,10 +20,12 @@ from utils.encode import decodeMask
 from utils.backgndExt import extBck
 from utils.extractFrames import getFrames
 
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 def run(data_path, model, detection_conf, visualize , Save , getDetectFile):
 
     images = sorted([img for img in os.listdir(data_path)])
-    model = YOLO("models/" + model + ".pt")
+    model = YOLO("models/" + model + ".pt").to(DEVICE)
     kf = KalmanFilter()
     emb_model = embdModel()
     mask_generator = genMask()
@@ -127,9 +130,9 @@ def main():
     parser.add_argument("--video_path", type=str, required=True, help="Path to the input video file.")
     parser.add_argument("--model", type=str, default="yolov8n", help="YOLO model name or path.")
     parser.add_argument("--detection_conf", type=float, default=0.4, help="Detection confidence threshold.")
-    parser.add_argument("--visualize", action="store_true", help="Enable visualization during processing.")
-    parser.add_argument("--no-save", action="store_true", help="Disable saving results.")
-    parser.add_argument("--get-detect-file", action="store_true", help="Generate detection file.")
+    parser.add_argument("--visualize", type=bool , action="store_true", help="Enable visualization during processing.")
+    parser.add_argument("--no-save", type=bool , action="store_true", help="Disable saving results.")
+    parser.add_argument("--get-detect-file", type=bool , action="store_true", help="Generate detection file.")
     parser.add_argument("--output_dir", type=str, default="frames", help="Directory to store extracted frames.")
 
     args = parser.parse_args()
