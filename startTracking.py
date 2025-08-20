@@ -130,9 +130,9 @@ def main():
     parser.add_argument("--video_path", type=str, required=True, help="Path to the input video file.")
     parser.add_argument("--model", type=str, default="yolov8n", help="YOLO model name or path.")
     parser.add_argument("--detection_conf", type=float, default=0.4, help="Detection confidence threshold.")
-    parser.add_argument("--visualize", type=bool , action="store_true", help="Enable visualization during processing.")
-    parser.add_argument("--no-save", type=bool , action="store_true", help="Disable saving results.")
-    parser.add_argument("--get-detect-file", type=bool , action="store_true", help="Generate detection file.")
+    parser.add_argument("--visualize", type=bool ,default=False , help="Enable visualization during processing.")
+    parser.add_argument("--no-save", type=bool,default=True help="Disable saving results.")
+    parser.add_argument("--get-detect-file", type=bool ,default=False ,help="Generate detection file.")
     parser.add_argument("--output_dir", type=str, default="frames", help="Directory to store extracted frames.")
 
     args = parser.parse_args()
